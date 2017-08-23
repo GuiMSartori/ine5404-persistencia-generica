@@ -1,10 +1,12 @@
 package ine5404.comandas;
 
+import java.io.Serializable;
+
 /**
  *
  * @author martin
  */
-public class Cliente {
+public class Cliente implements Serializable {
 
     protected String nome;
     protected int cpf;

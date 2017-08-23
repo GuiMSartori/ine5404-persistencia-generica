@@ -18,12 +18,15 @@ public class Persistencia<E> {
         FileOutputStream file = new FileOutputStream(arquivo);
         ObjectOutputStream out = new ObjectOutputStream(file);
         out.writeObject(objeto);
+        out.close();
     }
 
     public E desserializar(String arquivo) throws FileNotFoundException, IOException, ClassNotFoundException {
         FileInputStream file = new FileInputStream(arquivo);
         ObjectInputStream in = new ObjectInputStream(file);
-        return (E) in.readObject();
+        E object = (E) in.readObject();
+        in.close();
+        return object;
     }
 
 }
