@@ -1,14 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ine5404.comandas;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 /**
  *
  * @author martin
+ * @param <E>
  */
-public class Persistencia {
-    //implemente uma classe para gravar e recuperar uma Comanda e um GerenciadorDeUsuarios
+public class Persistencia<E> {
+
+    public void serialiazar(E objeto, String arquivo) throws FileNotFoundException, IOException {
+        FileOutputStream file = new FileOutputStream(arquivo);
+        ObjectOutputStream out = new ObjectOutputStream(file);
+        out.writeObject(objeto);
+    }
+
+    public E desserializar(String arquivo) throws FileNotFoundException, IOException, ClassNotFoundException {
+        FileInputStream file = new FileInputStream(arquivo);
+        ObjectInputStream in = new ObjectInputStream(file);
+        return (E) in.readObject();
+    }
+
 }

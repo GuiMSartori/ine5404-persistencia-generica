@@ -1,28 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ine5404.comandas;
 
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  *
  * @author martin
  */
 public class GerenciadorDeUsuarios {
-    Map<String, String> mapaLoginSenha;
-    
-    //implementar uma mapa de login e senhas
-    
-    public void addLoginSenha(String login, String senha){
-        //implementar
+
+    HashMap<String, String> mapaLoginSenha;
+
+    public GerenciadorDeUsuarios(HashMap<String, String> mapaLoginSenha) {
+        this.mapaLoginSenha = new HashMap() {
+        };
     }
-    
-    public boolean autenticar(String login, String senha){
-        //verificar se o par login e senha está no mapa
-        
+
+    public void addLoginSenha(String login, String senha) {
+        mapaLoginSenha.put(login, senha);
+    }
+
+    public boolean autenticar(String login, String senha) {
+        String senhaTeste = mapaLoginSenha.get(login);
+        if (senhaTeste.equals(senha)) {
+            return true;
+        }
         return false;
     }
 }
